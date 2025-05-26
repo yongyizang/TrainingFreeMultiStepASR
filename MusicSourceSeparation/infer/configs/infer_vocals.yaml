@@ -1,0 +1,26 @@
+# @package _global_
+
+# specify here default training configuration
+defaults:
+  - model: vocals
+  - paths: default.yaml
+  # enable color logging
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+#hydra:
+#  run:
+#    dir: ${get_eval_log_dir:${ckpt_path}}
+
+#ckpt_path: "G:\\Experiments\\KLRef\\vocals.onnx"
+ckpt_path: "/root/autodl-tmp/dtt/vocalsg32_ep4082.ckpt"
+mixture_path: "/root/autodl-tmp/test"
+batch_size: 16
+device: 'cuda:0'
+
+double_chunk: False
+
+overlap_add:
+  overlap_rate: 0.5
+  tmp_root: "/root/autodl-tmp/tmp" # for saving temp chunks, since we use ffmpeg and will need io to disk
+  samplerate: 44100
